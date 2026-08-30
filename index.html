@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=VT323&display=swap">
+<style>
+  html, body { margin: 0; padding: 0; background: #000000; height: 100%; overflow: hidden; }
+  a { color: #F5C518; }
+  a:hover { color: #0A0E0A; }
+  ::selection { background: #F5C518; color: #000; }
+  * { cursor: url("assets/cursor-cross.png") 16 16, auto !important; }
+  a, button, label, input, textarea, [style*="cursor: pointer"], [style*="cursor:pointer"], [style*="cursor: help"], [style*="cursor:help"] { cursor: url("assets/cursor-cross-hot.png") 16 16, pointer !important; }
+  @keyframes bakaCaret { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+  @keyframes bakaPower { 0% { transform: scaleY(.004); opacity: 0 } 30% { transform: scaleY(.004); opacity: .9 } 48% { transform: scaleY(.004); opacity: 1 } 64% { transform: scaleY(.05) } 100% { transform: scaleY(1) } }
+  @keyframes bakaFade { from { opacity: 0 } to { opacity: 1 } }
+  @keyframes bakaRise { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+  @keyframes bakaLed { 0%, 100% { opacity: 1 } 50% { opacity: .4 } }
+  @keyframes bakaRoll { 0% { transform: translateY(-10%) } 100% { transform: translateY(760%) } }
+  @keyframes bakaHalo { 0%, 100% { box-shadow: 0 0 0 1px #F5C518, 0 0 26px rgba(245,197,24,.28) } 50% { box-shadow: 0 0 0 1px #F5C518, 0 0 46px rgba(245,197,24,.5) } }
+  @keyframes bakaFlicker { 0%, 100% { opacity: 1 } 8% { opacity: .93 } 9% { opacity: 1 } 41% { opacity: .96 } 43% { opacity: 1 } 77% { opacity: .91 } 79% { opacity: 1 } }
+  @keyframes bakaAmbient { 0%, 100% { opacity: .5 } 50% { opacity: .78 } }
+  @keyframes bakaJitter { 0%, 96%, 100% { transform: translateX(0) } 97% { transform: translateX(-1px) } 98% { transform: translateX(1.5px) } 99% { transform: translateX(-.5px) } }
+  @keyframes bakaNoise { 0% { opacity: .06 } 50% { opacity: .11 } 100% { opacity: .06 } }
+  @keyframes bakaClick { from { transform: translate(-50%, -50%) scale(.3); opacity: .9 } to { transform: translate(-50%, -50%) scale(2.4); opacity: 0 } }
+  @keyframes bakaBtnGlow { 0%, 100% { box-shadow: 0 0 22px rgba(245,197,24,.35), 0 0 60px rgba(245,197,24,.15) } 50% { box-shadow: 0 0 40px rgba(245,197,24,.65), 0 0 90px rgba(245,197,24,.3) } }
+  @keyframes bkGlitch { 0%, 100% { transform: translate(0, 0); text-shadow: 1.5px 0 rgba(255,0,80,.65), -1.5px 0 rgba(0,255,190,.65) } 25% { transform: translate(-1px, 1px); text-shadow: -2px 0 rgba(255,0,80,.65), 2px 0 rgba(0,255,190,.65) } 50% { transform: translate(1px, -1px); text-shadow: 2px 0 rgba(255,0,80,.65), -2px 0 rgba(0,255,190,.65) } 75% { transform: translate(1px, 1px); text-shadow: -1.5px 0 rgba(255,0,80,.65), 1.5px 0 rgba(0,255,190,.65) } }
+  @keyframes bakaBtnGlow2 { 0%, 100% { filter: drop-shadow(0 0 10px rgba(245,197,24,.45)) } 50% { filter: drop-shadow(0 0 22px rgba(245,197,24,.8)) } }
+
+  @media (max-width: 760px) {
+    [data-mq="users"] { grid-template-columns: repeat(4, 1fr) !important; row-gap: 20px !important; width: 92% !important; }
+    [data-mq="crt"] { justify-content: flex-start !important; padding-top: 8px !important; }
+    [data-mq="selwrap"] { margin: auto 0; }
+    [data-mq="boot"] { display: flex; flex-direction: column; overflow-y: auto; max-height: 100%; min-height: 0; padding-top: 0 !important; }
+    [data-mq="bootimg"] { position: static !important; width: 100% !important; height: auto !important; margin: 12px auto 10px; order: 5; align-self: center; }
+    [data-mq="boot"] > div[style*="text-wrap"] { padding-right: 0 !important; white-space: normal !important; line-height: 1.55 !important; font-size: 11px !important; }
+    [data-mq="ready"] { position: absolute; top: 4px; right: 0; margin: 0 !important; z-index: 5; }
+    [data-mq="ready"] a { font-size: 16px !important; padding: 8px 14px 6px !important; }
+    [data-mq="boot"] > div:first-child img { width: 42px !important; height: 42px !important; }
+    [data-mq="boot"] > div:first-child span { font-size: 17px !important; }
+    [data-mq="mute"] { right: 0 !important; bottom: 0 !important; }
+    [data-mq="wplink"] { left: 0 !important; bottom: 0 !important; }
+    [data-mq="frame"] { width: 100% !important; }
+    [data-mq="eroot"] { padding: 46px 12px 36px !important; }
+    [data-mq="mobbanner"] { display: block !important; }
+  }
+</style>
+<script>
+(function(){
+  const CH = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&@!?<>/|=+*";
+  document.addEventListener("mouseenter", function(ev){
+    const t = ev.target;
+    const el = t && t.closest ? t.closest("button, a") : null;
+    if (!el || el.__bkScr) return;
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const nodes = []; let n;
+    while ((n = walker.nextNode())) { if (n.textContent.trim()) nodes.push([n, n.textContent]); }
+    if (!nodes.length) return;
+    el.__bkScr = true;
+    const t0 = Date.now(), dur = 400;
+    const iv = setInterval(function(){
+      const p = Math.min(1, (Date.now() - t0) / dur);
+      nodes.forEach(function(pair){
+        const orig = pair[1], keep = Math.floor(orig.length * p);
+        let out = "";
+        for (let i = 0; i < orig.length; i++) {
+          const c = orig[i];
+          out += (i < keep || c === " " || c === "\u00a0") ? c : CH[(Math.random() * CH.length) | 0];
+        }
+        pair[0].textContent = out;
+      });
+      if (p >= 1) { clearInterval(iv); nodes.forEach(function(pair){ pair[0].textContent = pair[1]; }); el.__bkScr = false; }
+    }, 38);
+  }, true);
+})();
+</script>
+<script src="assets/baka-audio.js"></script>
+</helmet>
+
+<div data-mq="eroot" onClick="{{ skip }}" style="position: relative; height: 100vh; width: 100%; box-sizing: border-box; background: radial-gradient(ellipse 130% 100% at 50% 32%, #111511 0%, #070907 46%, #000000 100%); font-family: 'IBM Plex Mono', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(10px, 2.4vh, 26px) 16px; overflow: hidden;">
+  <div data-mq="mobbanner" style="display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 60; background: rgba(38,10,8,.92); border-bottom: 1px solid rgba(232,108,93,.4); color: #E86C5D; font-size: 9.5px; letter-spacing: .12em; padding: 6px 12px; text-align: center; font-family: 'IBM Plex Mono', monospace;">&gt; built for desktop. mobile works.</div>
+
+  
+  
+
+  <sc-if value="{{ wpOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position: fixed; inset: 0; z-index: 90; background: radial-gradient(ellipse at 50% 28%, rgba(12,22,16,.99) 0%, rgba(4,8,5,.99) 58%, rgba(2,5,2,1) 100%); display: flex; flex-direction: column; font-family: 'IBM Plex Mono', monospace; animation: bakaFade 200ms ease both;">
+        <div onClick="{{ wpStop }}" style="flex: 0 0 auto; display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-bottom: 1px solid rgba(245,197,24,.4); background: rgba(6,9,6,.92);">
+          <button onClick="{{ wpClose }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; padding: 8px 16px; background: transparent; color: #7CFFA6; border: 1px solid rgba(124,255,166,.4); cursor: pointer; clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);" style-hover="border-color: #7CFFA6">← BACK</button>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-family: 'VT323', monospace; font-size: 21px; line-height: 1; color: #F5C518; text-shadow: 0 0 16px rgba(245,197,24,.4);">🐝 WHITEPAPER</div>
+            <div style="margin-top: 3px; font-size: 9px; letter-spacing: .14em; color: #6E9C7C; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">ERIC: proof of flight</div>
+          </div>
+          <a href="{{ wpHref }}" download="ERIC-whitepaper.pdf" title="download whitepaper" data-sfx="coin" style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; box-sizing: border-box; flex: 0 0 auto; background: transparent; color: #F5C518; border: 1px solid rgba(245,197,24,.55); text-decoration: none; cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="background: rgba(245,197,24,.12)">
+            <svg width="13" height="13" viewBox="0 0 12 12"><path d="M5 1h2v5h2L6 9.5 3 6h2z" fill="currentColor"></path><path d="M1.5 10h9v1.5h-9z" fill="currentColor"></path></svg>
+          </a>
+        </div>
+        <sc-if value="{{ wpReady }}" hint-placeholder-val="{{ false }}">
+          <div style="flex: 1 1 auto; min-height: 0; overflow: auto; display: flex; align-items: flex-start; justify-content: center; padding: 18px 14px;">
+            <div style="clip-path: polygon(12px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 6px 100%, 0 calc(100% - 6px), 0 12px); border: 1px solid rgba(245,197,24,.4); background: #060906; padding: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 40px rgba(245,197,24,.08);">
+              <canvas ref="{{ wpCanvasRef }}" style="display: block; background: #ffffff;"></canvas>
+            </div>
+          </div>
+          <div style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 10px 0 14px; border-top: 1px solid rgba(245,197,24,.3); background: rgba(6,9,6,.92);">
+            <button onClick="{{ wpZoomOut }}" title="zoom out" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; width: 30px; padding: 6px 0; background: transparent; color: #6E9C7C; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="color: #7CFFA6; border-color: #7CFFA6">−</button>
+            <button onClick="{{ wpZoomIn }}" title="zoom in" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; width: 30px; padding: 6px 0; background: transparent; color: #6E9C7C; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="color: #7CFFA6; border-color: #7CFFA6">+</button>
+            <button onClick="{{ wpPrev }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; padding: 7px 16px; background: transparent; color: #7CFFA6; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="border-color: rgba(245,197,24,.6); color: #F5C518">‹ PREV</button>
+            <span style="font-family: 'VT323', monospace; font-size: 18px; letter-spacing: .06em; color: #F5C518;">PAGE {{ wpPageLabel }}</span>
+            <button onClick="{{ wpNext }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; padding: 7px 16px; background: transparent; color: #7CFFA6; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="border-color: rgba(245,197,24,.6); color: #F5C518">NEXT ›</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ wpNotReady }}" hint-placeholder-val="{{ false }}">
+          <div style="flex: 1; display: flex; align-items: center; justify-content: center; font-size: 11px; letter-spacing: .18em; color: #6E9C7C;">loading whitepaper...</div>
+        </sc-if>
+      </div>
+    </sc-if>
+  <div data-mq="frame" style="position: relative; width: min(92vw, 1120px); height: min(100%, 720px); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0;">
+    <div data-mq="wplink" style="position: absolute; left: 0; bottom: 2px; z-index: 20; font-size: 10px; letter-spacing: .18em; color: rgba(110,156,124,.45);">
+    <a href="assets/whitepaper.pdf" target="_blank" onClick="{{ openWp }}" data-noglitch="1" style="color: rgba(110,156,124,.45); text-decoration: none;" style-hover="color: rgba(159,232,180,.8)">whitepaper</a>
+  </div>
+    <div data-mq="mute" style="position: absolute; right: 0; bottom: 2px; z-index: 20; display: flex; gap: 8px; font-size: 10px; letter-spacing: .18em; color: rgba(110,156,124,.45);">
+    <sc-if value="{{ showSkip }}" hint-placeholder-val="{{ false }}">
+      <span onClick="{{ goHome }}" style="cursor: pointer;" style-hover="color: rgba(159,232,180,.8)">skip intro</span>
+      <span>|</span>
+    </sc-if>
+    <span data-sound-toggle="1" onClick="{{ toggleMute }}" style="cursor: pointer;" style-hover="color: rgba(159,232,180,.8)">{{ soundLabel }}</span>
+  </div>
+
+
+    <div style="position: absolute; inset: -14% -18% 2%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 44%, rgba(124,255,166,.28) 0%, rgba(148,220,170,.1) 40%, rgba(245,197,24,.05) 58%, rgba(0,0,0,0) 74%); filter: blur(34px); animation: bakaFade 1000ms 900ms both, bakaAmbient 5.5s 1.9s ease-in-out infinite;"></div>
+    <div style="position: absolute; inset: -30% -34% -10%; pointer-events: none; z-index: 0; background: radial-gradient(ellipse at 50% 46%, rgba(124,255,166,.09) 0%, rgba(124,255,166,.03) 52%, rgba(0,0,0,0) 76%); filter: blur(60px); animation: bakaFade 1000ms 900ms both;"></div>
+
+    <div style="position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; background: linear-gradient(165deg, #0E0F10 0%, #08090A 40%, #040505 100%); border: 1px solid #232527; border-radius: 14px; padding: 9px; box-shadow: 0 40px 110px rgba(0,0,0,.95), 0 0 90px rgba(124,255,166,.05), inset 0 0 0 1px rgba(0,0,0,.8), 0 0 0 2px rgba(120,124,130,.28), 0 1px 0 2px rgba(60,62,66,.35);">
+
+      <div data-mq="crt" style="flex: 1 1 auto; min-height: 0; position: relative; border-radius: 12px; overflow: hidden; background: radial-gradient(ellipse at 50% 42%, #101A11 0%, #081109 62%, #020502 100%); color: #C9F5D6; display: flex; flex-direction: column; justify-content: center; padding: clamp(14px, 3vh, 40px) clamp(16px, 3vw, 44px); box-shadow: inset 0 0 0 1px rgba(0,0,0,.6), inset 0 0 70px rgba(0,0,0,.9), inset 0 0 160px rgba(124,255,166,.1); animation: bakaPower 1200ms 800ms cubic-bezier(.3,.9,.3,1) both; transform-origin: center;">
+        
+
+        <div style="position: absolute; inset: 0; pointer-events: none; z-index: 5; background: linear-gradient(122deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,.015) 22%, rgba(255,255,255,0) 42%);"></div>
+        <div style="position: absolute; inset: 0; pointer-events: none; z-index: 5; background: repeating-linear-gradient(90deg, rgba(255,0,80,.035) 0px, rgba(255,0,80,.035) 1px, rgba(0,255,190,.035) 1px, rgba(0,255,190,.035) 2px, rgba(0,0,0,0) 2px, rgba(0,0,0,0) 3px);"></div>
+        <div style="position: absolute; inset: -20%; pointer-events: none; z-index: 4; opacity: .08; background-image: radial-gradient(rgba(255,255,255,.55) .5px, transparent .5px); background-size: 3px 3px; animation: bakaNoise 240ms steps(2) infinite;"></div>
+
+        <div style="position: absolute; inset: 0; pointer-events: none; z-index: 3; background: repeating-linear-gradient(180deg, rgba(0,0,0,.38) 0px, rgba(0,0,0,.38) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 3px);"></div>
+        <div style="position: absolute; inset: 0; pointer-events: none; z-index: 3; background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 48%, rgba(0,0,0,.72) 100%);"></div>
+        <div style="position: absolute; left: 0; right: 0; height: 30px; pointer-events: none; z-index: 4; background: linear-gradient(180deg, rgba(255,255,255,0), rgba(200,255,215,.045), rgba(255,255,255,0)); animation: bakaRoll 7s linear infinite;"></div>
+
+        <sc-if value="{{ cursorOn }}" hint-placeholder-val="{{ false }}">
+          <div style="position: absolute; z-index: 8; left: {{ cx }}; top: {{ cy }}; transition: left {{ cdur }} {{ ctf }}, top {{ cdur }} {{ ctf }}; pointer-events: none;">
+            <sc-if value="{{ clickRing }}" hint-placeholder-val="{{ false }}">
+              <span style="position: absolute; left: 4px; top: 4px; width: 26px; height: 26px; border: 2px solid #F5C518; border-radius: 50%; animation: bakaClick 480ms ease-out both;"></span>
+            </sc-if>
+            <svg width="22" height="30" viewBox="0 0 22 30" style="display: block; transform: {{ cursorScale }}; transition: transform 120ms ease; filter: drop-shadow(0 2px 5px rgba(0,0,0,.85));"><polygon points="1,1 1,24 7,18.5 11,28 14.6,26.4 10.6,17 19,17" fill="#EDEFF2" stroke="#0A0B0C" stroke-width="1.3"></polygon></svg>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ select }}" hint-placeholder-val="{{ true }}">
+          <div data-mq="selwrap" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(20px, 5vh, 52px); animation: bakaFade 600ms ease both;">
+            <div style="font-size: clamp(9.5px, 1.4vh, 12px); letter-spacing: .34em; color: #6E9C7C;">SELECT USER</div>
+            <div data-mq="users" style="display: grid; grid-template-columns: repeat(4, 1fr); width: 60%;">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.8vh, 16px); opacity: {{ u0.op }}; transform: {{ u0.tf }}; transition: opacity 400ms ease, transform 320ms ease;">
+                <img src="assets/doge.png" alt="doge" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: {{ u0.ring }}; filter: {{ u0.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
+                <div style="font-size: clamp(9px, 1.3vh, 12px); letter-spacing: .14em; color: {{ u0.nameColor }}; transition: color 320ms ease;">doge</div>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.8vh, 16px); opacity: {{ u1.op }}; transform: {{ u1.tf }}; transition: opacity 400ms ease, transform 320ms ease;">
+                <img src="assets/floki.png" alt="floki" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: {{ u1.ring }}; filter: {{ u1.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
+                <div style="font-size: clamp(9px, 1.3vh, 12px); letter-spacing: .14em; color: {{ u1.nameColor }}; transition: color 320ms ease;">floki</div>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.8vh, 16px); opacity: {{ u2.op }}; transform: {{ u2.tf }}; transition: opacity 400ms ease, transform 320ms ease;">
+                <img src="assets/babyfloki.png" alt="babyfloki" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: {{ u2.ring }}; filter: {{ u2.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
+                <div style="font-size: clamp(9px, 1.3vh, 12px); letter-spacing: .14em; color: {{ u2.nameColor }}; transition: color 320ms ease;">babyfloki</div>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.8vh, 16px); opacity: {{ u3.op }}; transform: {{ u3.tf }}; transition: opacity 400ms ease, transform 320ms ease;">
+                <img src="assets/eric.png" alt="eric" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: {{ u3.ring }}; filter: {{ u3.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
+                <div style="font-size: clamp(9px, 1.3vh, 12px); letter-spacing: .14em; color: {{ u3.nameColor }}; transition: color 320ms ease;">eric</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ login }}" hint-placeholder-val="{{ false }}">
+          <div data-mq="selwrap" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(8px, 1.6vh, 16px); animation: bakaFade 420ms ease both;">
+            <div style="font-size: clamp(9.5px, 1.4vh, 12px); letter-spacing: .34em; color: #6E9C7C;">LOGGING IN</div>
+            <img src="assets/eric.png" alt="eric" style="width: clamp(96px, 20vh, 190px); height: clamp(96px, 20vh, 190px); object-fit: cover; border-radius: 50%; background: #0A140C; animation: bakaHalo 2.4s ease-in-out infinite; filter: {{ avatarFx }}; transform: {{ avatarTf }}; transition: filter 280ms ease, transform 280ms ease;">
+            <div style="font-family: 'VT323', monospace; font-size: clamp(28px, 4.6vh, 50px); line-height: 1; letter-spacing: .06em; color: #F5C518; text-shadow: 0 0 22px rgba(245,197,24,.45);">eric</div>
+            <div style="font-size: clamp(10px, 1.5vh, 13px); letter-spacing: .06em; color: #7CFFA6;">{{ authLabel }}</div>
+            <div style="display: flex; gap: 3px; margin-top: 2px;">
+              <sc-for list="{{ authBlocks }}" as="b" hint-placeholder-count="16">
+                <span style="width: clamp(8px, 1.2vw, 13px); height: clamp(9px, 1.4vh, 14px); background: {{ b.bg }};"></span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ booting }}" hint-placeholder-val="{{ false }}">
+          <div data-mq="boot" style="position: relative; z-index: 2; width: 100%; max-width: 900px; margin: 0 auto; padding: clamp(18px, 4vh, 42px) 0; box-sizing: border-box;">
+            <div style="display: flex; align-items: center; gap: 10px; padding-bottom: clamp(4px, 1vh, 14px); margin-bottom: clamp(8px, 2.6vh, 44px); animation: bakaFade 420ms ease both;">
+              <img src="assets/eric.png" alt="" style="width: clamp(17px, 2.5vh, 24px); height: clamp(17px, 2.5vh, 24px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: 0 0 0 1px #F5C518;">
+              <span style="font-size: clamp(9px, 1.2vh, 10.5px); font-weight: 600; letter-spacing: .06em; color: #F5C518; white-space: nowrap;">$ERIC</span>
+              <span style="flex: 1;"></span>
+            </div>
+
+            <img data-mq="bootimg" src="assets/eric-photo.png" alt="ERIC" style="object-position: 50% 30%; position: absolute; top: clamp(28px, 6vh, 58px); right: clamp(14px, 2vw, 30px); width: clamp(150px, 30vh, 250px); height: clamp(150px, 30vh, 250px); object-fit: cover; z-index: 3; opacity: 1; clip-path: polygon(14px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 7px 100%, 0 calc(100% - 7px), 0 14px); box-shadow: 0 0 0 1px rgba(245,197,24,.5), 0 0 44px rgba(245,197,24,.22); animation: bakaFade 700ms 200ms ease both;">
+            <sc-for list="{{ lines }}" as="l" hint-placeholder-count="12">
+              <div style="font-family: {{ l.family }}; font-size: {{ l.size }}; font-weight: {{ l.weight }}; line-height: {{ l.lh }}; letter-spacing: {{ l.ls }}; text-align: {{ l.align }}; padding: {{ l.pad }}; margin: {{ l.margin }}; clip-path: {{ l.clip }}; border: {{ l.border }}; background: {{ l.bg }}; color: {{ l.color }}; text-shadow: {{ l.glow }}; text-wrap: pretty; white-space: {{ l.wrap }};">{{ l.text }}<sc-if value="{{ l.link }}" hint-placeholder-val="{{ false }}"><a href="assets/whitepaper.pdf" target="_blank" onClick="{{ openWp }}" style="color: #F5C518; text-decoration: underline; text-underline-offset: 3px; margin-left: 8px; text-shadow: 0 0 14px rgba(245,197,24,.4);" style-hover="color: #FFD84D">(link)</a></sc-if><sc-if value="{{ l.tweet }}" hint-placeholder-val="{{ false }}"><a href="https://x.com/elonmusk/status/1134609650114949120" target="_blank" style="color: #8FFFB4; text-decoration: underline; text-underline-offset: 3px; text-shadow: 0 0 14px rgba(124,255,166,.38);" style-hover="color: #F5C518">elon's pet bee</a>.</sc-if><sc-if value="{{ l.caret }}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; width: .56em; height: 1em; vertical-align: -.14em; background: #7CFFA6; box-shadow: 0 0 10px rgba(124,255,166,.7); margin-left: .12em; animation: bakaCaret 1.05s steps(1) infinite;"></span></sc-if></div>
+            </sc-for>
+
+            <sc-if value="{{ ready }}" hint-placeholder-val="{{ false }}">
+              <div data-mq="ready" style="margin-top: clamp(26px, 5.5vh, 64px); text-align: right; animation: bakaRise 420ms ease both;">
+                <a href="Dashboard.dc.html" style="display: inline-block; font-family: 'VT323', monospace; font-size: clamp(17px, 2.4vh, 23px); letter-spacing: .08em; padding: clamp(8px, 1.6vh, 14px) clamp(20px, 2.2vw, 32px) clamp(7px, 1.4vh, 12px); background: #F5C518; color: #0A0E0A; border: none; text-decoration: none; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); animation: bakaBtnGlow2 2.2s ease-in-out infinite; transition: background 140ms linear, color 140ms linear;" style-hover="background: #FFD84D">ENTER THE TERMINAL &gt;</a>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+
+    </div>
+
+    <div style="position: relative; z-index: 0; flex: 0 0 auto; width: min(50%, 430px); height: 14px; margin-top: 14px; border-radius: 50%; background: radial-gradient(ellipse, rgba(0,0,0,.9) 0%, rgba(0,0,0,0) 70%); filter: blur(4px);"></div>
+    <div style="position: absolute; left: 50%; bottom: -2%; transform: translateX(-50%); width: min(72%, 620px); height: 34px; pointer-events: none; z-index: 0; border-radius: 50%; background: radial-gradient(ellipse, rgba(124,255,166,.08) 0%, rgba(124,255,166,0) 70%); filter: blur(10px);"></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:800}}">
+const LINES = [
+  { t: "> IBM built a quantum computer.", k: "body" },
+  { t: "> anyone gets 10 free minutes a month.", k: "body" },
+  { t: "> we spent ours on a bee.", k: "body" },
+  { t: "", k: "gap" },
+  { t: "> his name is eric. after ", k: "body", tweet: true },
+  { t: "> the machine decides where he flies.", k: "body" },
+  { t: "", k: "gap" },
+  { t: "> yes, this is a meme.", k: "body" },
+  { t: "> the machine doesn't know that.", k: "body" },
+  { t: "> do not tell the machine.", k: "body" },
+  { t: "", k: "gap" },
+  { t: "EYE. BEE. M.", k: "eq" },
+  { t: "", k: "gap" },
+  { t: "> it was always about the bee.", k: "body" },
+  { t: "", k: "gap" },
+  { t: "$ERIC paired with $IBM", k: "body" }
+];
+
+const KEY = "baka_entry_seen_v1";
+const BLOCKS = 16;
+const USERS = [
+  { img: "assets/doge.png", name: "doge" },
+  { img: "assets/floki.png", name: "floki" },
+  { img: "assets/babyfloki.png", name: "babyfloki" },
+  { img: "assets/eric.png", name: "eric" }
+];
+
+const S = (n) => { if (window.BakaAudio) window.BakaAudio.sfx(n); };
+
+class Component extends DCLogic {
+  state = { phase: "select", auth: 0, granted: false, done: 0, partial: "", ready: false, flash: false, cursorOn: false, cx: "76%", cy: "82%", cdur: "0ms", ctf: "linear", hover: false, clicking: false, clicked: false, hoverIdx: -1, selected: false };
+  timers = [];
+
+  componentDidMount() {
+    let seen = false;
+    try { seen = !!localStorage.getItem(KEY); } catch (e) {}
+    try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    this.setState({ muted: window.BakaAudio ? window.BakaAudio.isMuted() : true });
+    setTimeout(() => { if (window.BakaAudio) this.setState({ muted: window.BakaAudio.isMuted() }); }, 600);
+    this.prefetchWp();
+    this.sndIv = setInterval(() => this.forceUpdate(), 1200);
+    this.onKey = () => this.skip();
+    window.addEventListener("keydown", this.onKey);
+    this.narrow = typeof window !== "undefined" && window.innerWidth < 760;
+    this.onResize = () => {
+      const n = window.innerWidth < 760;
+      if (n !== this.narrow) { this.narrow = n; this.forceUpdate(); }
+    };
+    window.addEventListener("resize", this.onResize);
+
+    const EASE = "cubic-bezier(.35,.7,.3,1)";
+    const move = (x, y, dur, ms, tf) => this.at(() => { this.setState({ cx: x, cy: y, cdur: dur, ctf: tf || EASE }); S("glide"); }, ms);
+    const colX = (i) => (50 + (i - 1.5) * 15).toFixed(2) + "%";
+    const rowY = "50.5%";
+    let clickAt;
+    const N = USERS.length;
+    const mob = typeof window !== "undefined" && window.innerWidth < 760;
+    if (mob) {
+      this.at(() => this.setState({ cursorOn: true, cx: "80%", cy: "86%", cdur: "0ms" }), 150);
+      this.at(() => {
+        const crt = document.querySelector('[data-mq="crt"]');
+        if (!crt) return;
+        const r0 = crt.getBoundingClientRect();
+        const imgs = Array.from(crt.querySelectorAll("img")).slice(0, 4);
+        if (imgs.length < 4 || !r0.width) return;
+        const pos = imgs.map((im) => {
+          const r = im.getBoundingClientRect();
+          return [((r.left + r.width / 2 - r0.left) / r0.width * 100).toFixed(1) + "%", ((r.top + r.height / 2 - r0.top) / r0.height * 100).toFixed(1) + "%"];
+        });
+        const order = [0, 1, 2, 3];
+        order.forEach((idx, i) => {
+          const t = i * 380;
+          this.at(() => { this.setState({ cx: pos[idx][0], cy: pos[idx][1], cdur: "340ms", ctf: "cubic-bezier(.35,.7,.3,1)" }); S("glide"); }, t);
+          this.at(() => { this.setState({ hoverIdx: idx }); S("hover"); }, t + 220);
+        });
+      }, 620);
+      clickAt = 620 + 4 * 380 + 280;
+    } else if (seen) {
+      this.at(() => this.setState({ cursorOn: true, cx: "80%", cy: "84%", cdur: "0ms" }), 150);
+      move("58%", "62%", "500ms", 300);
+      move(colX(0), rowY, "550ms", 950);
+      move(colX(N - 2), rowY, "1680ms", 1650, "linear");
+      for (let i = 0; i < N - 1; i++) this.at(() => { this.setState({ hoverIdx: i }); S("hover"); }, 1650 + i * 280);
+      move(colX(N - 1), rowY, "600ms", 3330, "cubic-bezier(0,0,.2,1)");
+      this.at(() => { this.setState({ hoverIdx: N - 1 }); S("hover"); }, 3930);
+      clickAt = 4360;
+    } else {
+      this.at(() => this.setState({ cursorOn: true, cx: "80%", cy: "84%", cdur: "0ms" }), 600);
+      move("32%", "28%", "1100ms", 900);
+      move("62%", "60%", "950ms", 2450);
+      move("46%", "36%", "800ms", 3900);
+      move(colX(0), rowY, "900ms", 5100);
+      move(colX(N - 2), rowY, "3360ms", 6250, "linear");
+      for (let i = 0; i < N - 1; i++) this.at(() => { this.setState({ hoverIdx: i }); S("hover"); }, 6250 + i * 560);
+      move(colX(N - 1), rowY, "1100ms", 9610, "cubic-bezier(0,0,.2,1)");
+      this.at(() => { this.setState({ hoverIdx: N - 1 }); S("hover"); }, 10710);
+      clickAt = 11350;
+    }
+    this.at(() => { this.setState({ clicking: true }); S("click"); }, clickAt);
+    this.at(() => { this.setState({ clicking: false, clicked: true, selected: true }); S("coin"); }, clickAt + 220);
+    this.at(() => { this.setState({ phase: "login" }); S("tab"); }, clickAt + (seen ? 500 : 1000));
+    this.at(() => this.setState({ cursorOn: false }), clickAt + (seen ? 650 : 1200));
+
+    const step = seen ? 60 : 300;
+    const startAt = clickAt + (seen ? 800 : 1500);
+    for (let i = 1; i <= BLOCKS; i++) this.at(() => { this.setState({ auth: i }); S("blip"); }, startAt + i * step);
+    const grantAt = startAt + BLOCKS * step + 350;
+    this.at(() => { this.setState({ granted: true }); S("connect"); }, grantAt);
+    this.at(() => { this.setState({ phase: "boot", ready: true }); S("boot"); }, grantAt + (seen ? 400 : 1200));
+    if (seen) this.fastBoot(grantAt + 500); else this.run(0, grantAt + 1600);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.sndIv);
+    this.timers.forEach(clearTimeout);
+    window.removeEventListener("keydown", this.onKey);
+    window.removeEventListener("resize", this.onResize);
+  }
+
+  at(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
+  prefetchWp() {
+    if (this._wpStarted) return;
+    this._wpStarted = true;
+    fetch("assets/whitepaper.pdf").then(r => r.blob()).then(b => {
+      this.setState({ wpUrl: URL.createObjectURL(b.slice(0, b.size, "application/pdf")) });
+    }).catch(() => {});
+  }
+  openWp(e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    this.prefetchWp();
+    this.sndIv = setInterval(() => this.forceUpdate(), 1200);
+    this.loadWpDoc();
+    this.setState({ wpOpen: true });
+  }
+  loadWpDoc() {
+    if (this.wpDoc || this._wpDocLoading) return;
+    this._wpDocLoading = true;
+    const boot = () => {
+      const lib = window.pdfjsLib;
+      if (!lib) { this._wpDocLoading = false; return; }
+      lib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      fetch("assets/whitepaper.pdf").then(r => r.arrayBuffer()).then(buf => lib.getDocument({ data: buf }).promise).then(doc => {
+        this.wpDoc = doc;
+        this.setState({ wpPages: doc.numPages, wpPage: 1 });
+        setTimeout(() => this.renderWpPage(1), 50);
+      }).catch(() => { this._wpDocLoading = false; });
+    };
+    if (window.pdfjsLib) boot();
+    else {
+      const sc2 = document.createElement("script");
+      sc2.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+      sc2.onload = boot;
+      sc2.onerror = () => { this._wpDocLoading = false; };
+      document.head.appendChild(sc2);
+    }
+  }
+  wpResizeHook() {
+    if (this._wpResized) return;
+    this._wpResized = true;
+    window.addEventListener("resize", () => {
+      if (this.state.wpOpen) this.renderWpPage(this.state.wpPage || 1);
+    });
+  }
+  renderWpPage(n) {
+    this.wpResizeHook();
+    const doc = this.wpDoc, cv = this.wpCanvas;
+    if (!doc || !cv) return;
+    doc.getPage(n).then(pg => {
+      let area = cv.parentElement;
+      while (area && !(area.style && (area.style.overflow === "auto" || area.style.overflowY === "auto"))) area = area.parentElement;
+      const availW = area ? area.clientWidth : (window.innerWidth || 800);
+      const z = this.state.wpZoom || 1;
+      const maxW = Math.max(200, Math.min(860, availW - 64)) * z;
+      const v1 = pg.getViewport({ scale: 1 });
+      const scale = Math.max(0.2, maxW / v1.width);
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      const vp = pg.getViewport({ scale: scale * dpr });
+      if (this._wpTask && this._wpTask.cancel) { try { this._wpTask.cancel(); } catch (e) {} }
+      cv.width = vp.width; cv.height = vp.height;
+      cv.style.width = (vp.width / dpr) + "px";
+      cv.style.height = (vp.height / dpr) + "px";
+      const c2 = cv.getContext("2d");
+      c2.setTransform(1, 0, 0, 1, 0, 0);
+      c2.clearRect(0, 0, cv.width, cv.height);
+      this._wpTask = pg.render({ canvasContext: c2, viewport: vp });
+    }).catch(() => {});
+  }
+
+  fastBoot(start) {
+    LINES.forEach((_, i) => this.at(() => { this.setState({ done: i + 1, partial: "" }); S("type"); }, start + 220 * i));
+    this.at(() => { this.setState({ ready: true }); S("plant"); }, start + 220 * LINES.length + 600);
+  }
+
+  run(i, delay) {
+    if (i >= LINES.length) { this.at(() => { this.setState({ ready: true }); S("plant"); }, delay + 420); return; }
+    const line = LINES[i];
+    if (line.k === "gap") {
+      this.at(() => this.setState({ done: i + 1, partial: "" }), delay);
+      this.run(i + 1, delay + 520);
+      return;
+    }
+    const eq = line.k === "eq";
+    const speed = eq ? 50 : 26;
+    let t = delay + (eq ? 800 : 420);
+    for (let c = 1; c <= line.t.length; c++) {
+      const slice = line.t.slice(0, c);
+      this.at(() => { this.setState({ partial: slice }); if (c % 2 === 1) S("type"); }, t);
+      t += speed;
+    }
+    this.at(() => this.setState({ done: i + 1, partial: "" }), t);
+    if (eq) {
+      this.at(() => { this.setState({ flash: true }); S("coin"); }, t + 400);
+      this.at(() => this.setState({ flash: false }), t + 800);
+      t += 1200;
+    }
+    this.run(i + 1, t);
+  }
+
+  skip() {
+    if (this.state.ready) return;
+    this.timers.forEach(clearTimeout);
+    this.timers = [];
+    this.setState({ phase: "boot", auth: BLOCKS, granted: true, done: LINES.length, partial: "", ready: true, flash: false, cursorOn: false, hover: false, clicking: false, clicked: true, hoverIdx: -1, selected: true });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const style = (k) => k === "head"
+      ? { family: "'IBM Plex Mono', monospace", size: "clamp(11px, 1.6vh, 14px)", weight: "600", lh: "1.9", ls: ".16em", align: "left", pad: "0", margin: "0", border: "none", bg: "transparent", color: "#F5C518", glow: "0 0 14px rgba(245,197,24,.4)", wrap: "normal", clip: "none" }
+      : k === "eq"
+        ? { family: "'VT323', monospace", size: "clamp(13px, 1.55vw, 21px)", weight: "400", lh: "1.25", ls: ".03em", align: "center", pad: "clamp(6px, 1.6vh, 18px) clamp(10px, 1.6vw, 24px)", margin: "clamp(4px, 1vh, 12px) 0", border: s.flash ? "1px solid #F5C518" : "1px solid rgba(245,197,24,.4)", bg: s.flash ? "#F5C518" : "rgba(245,197,24,.05)", color: s.flash ? "#0A0E0A" : "#F5C518", glow: s.flash ? "none" : "0 0 26px rgba(245,197,24,.55)", wrap: this.narrow ? "normal" : "nowrap", clip: "polygon(14px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 7px 100%, 0 calc(100% - 7px), 0 14px)" }
+        : { family: "'IBM Plex Mono', monospace", size: "clamp(11px, 1.75vh, 14px)", weight: "400", lh: "clamp(16px, 3vh, 28px)", ls: "0", align: "left", pad: "0 clamp(150px, 26vh, 235px) 0 0", margin: "0", border: "none", bg: "transparent", color: "#8FFFB4", glow: "0 0 14px rgba(124,255,166,.38)", wrap: "nowrap", clip: "none" };
+
+    const lines = [];
+    for (let i = 0; i < LINES.length; i++) {
+      const l = LINES[i];
+      if (i < s.done) lines.push({ text: l.k === "gap" ? "\u00a0" : l.t, caret: false, link: !!l.link, tweet: !!l.tweet, ...style(l.k === "gap" ? "body" : l.k), ...(l.k === "gap" ? { lh: "clamp(14px, 2.6vh, 26px)" } : {}) });
+      else if (i === s.done && s.done < LINES.length) { lines.push({ text: s.partial, caret: true, link: false, tweet: false, ...style(l.k === "gap" ? "body" : l.k) }); break; }
+      else break;
+    }
+
+    const authBlocks = Array.from({ length: BLOCKS }, (_, i) => ({ bg: i < s.auth ? "#F5C518" : "#15201A" }));
+
+    return {
+      lines, authBlocks,
+      login: s.phase === "login",
+      booting: s.phase === "boot",
+      ready: s.ready,
+      authLabel: s.granted ? "access granted" : (s.clicked ? "logging in..." : "\u00a0"),
+      cursorOn: s.cursorOn && s.phase !== "boot",
+      select: s.phase === "select",
+      ...Object.fromEntries(USERS.map((u, i) => {
+        const hot = i === s.hoverIdx && !s.selected;
+        const isBaka = i === USERS.length - 1;
+        const win = s.selected && isBaka;
+        return ["u" + i, {
+          op: s.selected ? (isBaka ? 1 : 0.18) : 1,
+          tf: win ? "scale(1.16) translateY(-4px)" : hot ? "scale(1.05)" : "scale(1)",
+          ring: win ? "0 0 0 2px #F5C518, 0 0 34px rgba(245,197,24,.6)" : hot ? "0 0 0 1px rgba(124,255,166,.6), 0 0 18px rgba(124,255,166,.25)" : "0 0 0 1px rgba(124,255,166,.22)",
+          fx: win ? "brightness(1.05)" : hot ? "grayscale(.15) brightness(.95)" : "grayscale(.55) brightness(.72)",
+          nameColor: win ? "#F5C518" : hot ? "#9FE8B4" : "#6E9C7C"
+        }];
+      })),
+      cx: s.cx, cy: s.cy, cdur: s.cdur, ctf: s.ctf,
+      clickRing: s.clicking,
+      cursorScale: s.clicking ? "scale(.78)" : "scale(1)",
+      avatarFx: s.hover ? "brightness(1.18)" : "brightness(1)",
+      avatarTf: s.hover ? "scale(1.05)" : "scale(1)",
+      sessionLabel: s.ready ? "ACTIVE" : "OPENING",
+      statusLabel: s.ready ? "READY" : (s.phase === "login" ? "LOGIN" : "BOOTING"),
+      hintLabel: s.ready ? "\u00a0" : "TAP ANYWHERE TO SKIP",
+      showSkip: !s.ready,
+      goHome: (e) => { e.stopPropagation(); window.location.href = "Dashboard.dc.html"; },
+      soundLabel: (() => { const A = window.BakaAudio; return (A && !A.isMuted() && A.isLive()) ? "sound: on" : "sound: off"; })(),
+      toggleMute: (e) => {
+        e.stopPropagation();
+        const A = window.BakaAudio; if (!A) return;
+        const on = !A.isMuted() && A.isLive();
+        if (on) { if (!A.isMuted()) A.toggleMute(); }
+        else { if (A.isMuted()) A.toggleMute(); else A.tryArm(); }
+        this.setState({ muted: A.isMuted() });
+      },
+      skip: () => this.skip(),
+      stopClick: (e) => e.stopPropagation(),
+      wpOpen: !!s.wpOpen,
+      wpClose: (e) => { if (e) e.stopPropagation(); this.setState({ wpOpen: false }); },
+      wpStop: (e) => e.stopPropagation(),
+      wpHref: s.wpUrl || "",
+      wpReady: !!s.wpPages,
+      wpNotReady: !s.wpPages,
+      wpCanvasRef: (el) => { this.wpCanvas = el; if (el) this.renderWpPage(this.state.wpPage || 1); },
+      wpPageLabel: (s.wpPage || 1) + " / " + (s.wpPages || 1),
+      wpZoomIn: () => { const z = Math.min(2.4, (this.state.wpZoom || 1) * 1.25); this.setState({ wpZoom: z }); this.renderWpPage(this.state.wpPage || 1); },
+      wpZoomOut: () => { const z = Math.max(0.5, (this.state.wpZoom || 1) / 1.25); this.setState({ wpZoom: z }); this.renderWpPage(this.state.wpPage || 1); },
+      wpPrev: () => { const n = Math.max(1, (this.state.wpPage || 1) - 1); this.setState({ wpPage: n }); this.renderWpPage(n); },
+      wpNext: () => { const n = Math.min(this.state.wpPages || 1, (this.state.wpPage || 1) + 1); this.setState({ wpPage: n }); this.renderWpPage(n); },
+      openWp: (e) => this.openWp(e),
+      mobW: !!s.mobW,
+      enterGo: (e) => {
+        try {
+          if (window.innerWidth < 760 && !localStorage.getItem("baka_mob_v1")) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.setState({ mobW: true });
+          }
+        } catch (err) {}
+      },
+      mobGo: (e) => {
+        e.stopPropagation();
+        try { localStorage.setItem("baka_mob_v1", "1"); } catch (err) {}
+        window.location.href = "Dashboard.dc.html";
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
