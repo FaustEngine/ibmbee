@@ -937,9 +937,18 @@
         <span style="position: absolute; right: 3px; top: 3px; width: 6px; height: 6px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #5A5E66, #23262B);"></span>
         <span style="position: absolute; left: 3px; bottom: 3px; width: 6px; height: 6px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #5A5E66, #23262B);"></span>
         <span style="position: absolute; right: 3px; bottom: 3px; width: 6px; height: 6px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #5A5E66, #23262B);"></span>
-        <div style="position: relative; width: 100%; height: 100%; background: #04101E url('assets/chamber-bg.png') center / cover no-repeat; overflow: hidden;">
-          <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 40% at 72% 20%, rgba(69,224,230,.20) 0%, rgba(4,16,30,0) 68%);"></div>
-          <div style="position: absolute; inset: 0; pointer-events: none; opacity: .05; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2228%22 height=%2249%22><path d=%22M14 1L27 8.5v16L14 32 1 24.5v-16z M14 32v17%22 fill=%22none%22 stroke=%22%2345E0E6%22 stroke-width=%221%22/></svg>'); background-size: 28px 49px;"></div>
+        <div style="position: relative; width: 100%; height: 100%; overflow: hidden; background: #1A4A78;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #6BA8C9 0%, #3D7FA8 40%, #2C6A96 47.5%, #1E4F7C 48%, #163A68 100%);"></div>
+          <div style="position: absolute; width: 30%; aspect-ratio: 1; right: 16%; top: 6%; border-radius: 50%; background: radial-gradient(circle at 46% 46%, #E8FBFC 0%, #A8EEF4 28%, #5EC8D8 55%, rgba(62,127,168,0) 72%); pointer-events: none;"></div>
+          <div style="position: absolute; left: 0; right: 0; top: 47.5%; height: 1px; background: rgba(168,238,244,.35); pointer-events: none;"></div>
+          <div style="position: absolute; left: 14%; top: 47.6%; width: 24%; height: 52.4%; background: linear-gradient(180deg, #B7F2F6 0%, #5EC8D8 28%, #2A7A98 100%); clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%); pointer-events: none;"></div>
+          <div style="position: absolute; left: 0; top: 6%; bottom: 0; width: 34%; pointer-events: none; background:
+            linear-gradient(90deg, rgba(8,24,48,.55) 0%, rgba(8,24,48,0) 100%),
+            repeating-linear-gradient(90deg, #0C2748 0 42px, #123058 42px 46px, #0A1E3A 46px 88px, #163A5C 88px 94px, #0C2748 94px 140px);
+            box-shadow: inset -40px 0 50px rgba(22,58,104,.55);"></div>
+          <div style="position: absolute; left: 0; top: 6%; bottom: 0; width: 34%; pointer-events: none; opacity: .45; mix-blend-mode: overlay; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22><path d=%22M0 8h32M0 16h32M0 24h32M8 0v32M16 0v32M24 0v32%22 stroke=%22%237FE9F2%22 stroke-width=%220.4%22 opacity=%220.5%22/><rect x=%222%22 y=%222%22 width=%226%22 height=%226%22 fill=%22none%22 stroke=%22%2345E0E6%22 stroke-width=%220.4%22/></svg>'); background-size: 32px 32px;"></div>
+          <div style="position: absolute; inset: 0; pointer-events: none; background: url('assets/chamber-grain.png') repeat; background-size: 192px 192px; opacity: .55; mix-blend-mode: overlay;"></div>
+          <div style="position: absolute; inset: 0; pointer-events: none; opacity: .22; background: repeating-linear-gradient(90deg, rgba(8,28,52,.55) 0 1px, transparent 1px 3px);"></div>
           <canvas ref="{{ chamCanvasRef }}" style="position: absolute; inset: 0; width: 100%; height: 100%;"></canvas>
           <div ref="{{ chamShadowRef }}" style="position: absolute; left: 0; top: 0; width: 44px; height: 10px; border-radius: 50%; background: rgba(4,16,30,.45); filter: blur(3px); will-change: transform, opacity; transform: translate(-200px, 0); pointer-events: none;"></div>
           <img ref="{{ chamBeeRef }}" src="assets/eric.png" alt="eric" style="position: absolute; left: 0; top: 0; width: 62px; height: 62px; will-change: transform; transform: translate(-120px, 200px); pointer-events: none; filter: drop-shadow(0 3px 8px rgba(4,16,30,.55));">
@@ -962,14 +971,14 @@
           </div>
           <sc-if value="{{ chamBootOn }}" hint-placeholder-val="{{ false }}">
             <div style="position: absolute; left: 0; right: 0; height: 70px; background: linear-gradient(180deg, rgba(20,22,26,0), rgba(20,22,26,.07), rgba(20,22,26,0)); animation: bkPageSweep 1.8s linear both; pointer-events: none;"></div>
-            <div style="position: absolute; left: 16px; bottom: 44px; font-size: 11px; line-height: 2; color: #3E3E3A;">
+            <div style="position: absolute; left: 16px; bottom: 44px; font-size: 11px; line-height: 2; color: #C9F4F7;">
               <sc-for list="{{ chamBootLines }}" as="bl" hint-placeholder-count="0">
                 <div style="animation: bkFade 240ms ease both;">{{ bl }}</div>
               </sc-for>
             </div>
           </sc-if>
           <sc-if value="{{ chamResting }}" hint-placeholder-val="{{ false }}">
-            <div style="position: absolute; left: 0; right: 0; bottom: 44px; text-align: center; font-size: 10.5px; letter-spacing: .14em; color: #6B6B64; pointer-events: none; animation: bkFade 400ms ease both;">eric is resting. the machine is quiet.</div>
+            <div style="position: absolute; left: 0; right: 0; bottom: 44px; text-align: center; font-size: 10.5px; letter-spacing: .14em; color: #A8EEF4; pointer-events: none; animation: bkFade 400ms ease both;">eric is resting. the machine is quiet.</div>
           </sc-if>
         </div>
       </div>
