@@ -14,7 +14,7 @@
 <style>
   html, body { margin: 0; padding: 0; background: #000000; height: 100%; overflow: hidden; }
   a { color: #F5C518; }
-  a:hover { color: #0A0E0A; }
+  a:hover { color: #04101E; }
   ::selection { background: #F5C518; color: #000; }
   * { cursor: url("assets/cursor-cross.png") 16 16, auto !important; }
   a, button, label, input, textarea, [style*="cursor: pointer"], [style*="cursor:pointer"], [style*="cursor: help"], [style*="cursor:help"] { cursor: url("assets/cursor-cross-hot.png") 16 16, pointer !important; }
@@ -84,7 +84,7 @@
 <script src="assets/baka-audio.js"></script>
 </helmet>
 
-<div data-mq="eroot" onClick="{{ skip }}" style="position: relative; height: 100vh; width: 100%; box-sizing: border-box; background: radial-gradient(ellipse 130% 100% at 50% 32%, #111511 0%, #070907 46%, #000000 100%); font-family: 'IBM Plex Mono', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(10px, 2.4vh, 26px) 16px; overflow: hidden;">
+<div data-mq="eroot" onClick="{{ skip }}" style="position: relative; height: 100vh; width: 100%; box-sizing: border-box; background: radial-gradient(ellipse 130% 100% at 50% 32%, #080D16 0%, #060A14 46%, #000000 100%); font-family: 'IBM Plex Mono', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(10px, 2.4vh, 26px) 16px; overflow: hidden;">
   <div data-mq="mobbanner" style="display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 60; background: rgba(38,10,8,.92); border-bottom: 1px solid rgba(232,108,93,.4); color: #E86C5D; font-size: 9.5px; letter-spacing: .12em; padding: 6px 12px; text-align: center; font-family: 'IBM Plex Mono', monospace;">&gt; built for desktop. mobile works.</div>
 
   
@@ -93,10 +93,10 @@
   <sc-if value="{{ wpOpen }}" hint-placeholder-val="{{ false }}">
       <div style="position: fixed; inset: 0; z-index: 90; background: radial-gradient(ellipse at 50% 28%, rgba(12,22,16,.99) 0%, rgba(4,8,5,.99) 58%, rgba(2,5,2,1) 100%); display: flex; flex-direction: column; font-family: 'IBM Plex Mono', monospace; animation: bakaFade 200ms ease both;">
         <div onClick="{{ wpStop }}" style="flex: 0 0 auto; display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-bottom: 1px solid rgba(245,197,24,.4); background: rgba(6,9,6,.92);">
-          <button onClick="{{ wpClose }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; padding: 8px 16px; background: transparent; color: #7CFFA6; border: 1px solid rgba(124,255,166,.4); cursor: pointer; clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);" style-hover="border-color: #7CFFA6">← BACK</button>
+          <button onClick="{{ wpClose }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .14em; padding: 8px 16px; background: transparent; color: #45E0E6; border: 1px solid rgba(124,255,166,.4); cursor: pointer; clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);" style-hover="border-color: #45E0E6">← BACK</button>
           <div style="flex: 1; min-width: 0;">
             <div style="font-family: 'VT323', monospace; font-size: 21px; line-height: 1; color: #F5C518; text-shadow: 0 0 16px rgba(245,197,24,.4);">🐝 WHITEPAPER</div>
-            <div style="margin-top: 3px; font-size: 9px; letter-spacing: .14em; color: #6E9C7C; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">ERIC: proof of flight</div>
+            <div style="margin-top: 3px; font-size: 9px; letter-spacing: .14em; color: #5E8CA4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">ERIC: proof of flight</div>
           </div>
           <a href="{{ wpHref }}" download="ERIC-whitepaper.pdf" title="download whitepaper" data-sfx="coin" style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; box-sizing: border-box; flex: 0 0 auto; background: transparent; color: #F5C518; border: 1px solid rgba(245,197,24,.55); text-decoration: none; cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="background: rgba(245,197,24,.12)">
             <svg width="13" height="13" viewBox="0 0 12 12"><path d="M5 1h2v5h2L6 9.5 3 6h2z" fill="currentColor"></path><path d="M1.5 10h9v1.5h-9z" fill="currentColor"></path></svg>
@@ -104,20 +104,20 @@
         </div>
         <sc-if value="{{ wpReady }}" hint-placeholder-val="{{ false }}">
           <div style="flex: 1 1 auto; min-height: 0; overflow: auto; display: flex; align-items: flex-start; justify-content: center; padding: 18px 14px;">
-            <div style="clip-path: polygon(12px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 6px 100%, 0 calc(100% - 6px), 0 12px); border: 1px solid rgba(245,197,24,.4); background: #060906; padding: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 40px rgba(245,197,24,.08);">
+            <div style="clip-path: polygon(12px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 6px 100%, 0 calc(100% - 6px), 0 12px); border: 1px solid rgba(245,197,24,.4); background: #060A14; padding: 10px; box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 40px rgba(245,197,24,.08);">
               <canvas ref="{{ wpCanvasRef }}" style="display: block; background: #ffffff;"></canvas>
             </div>
           </div>
           <div style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 10px 0 14px; border-top: 1px solid rgba(245,197,24,.3); background: rgba(6,9,6,.92);">
-            <button onClick="{{ wpZoomOut }}" title="zoom out" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; width: 30px; padding: 6px 0; background: transparent; color: #6E9C7C; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="color: #7CFFA6; border-color: #7CFFA6">−</button>
-            <button onClick="{{ wpZoomIn }}" title="zoom in" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; width: 30px; padding: 6px 0; background: transparent; color: #6E9C7C; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="color: #7CFFA6; border-color: #7CFFA6">+</button>
-            <button onClick="{{ wpPrev }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; padding: 7px 16px; background: transparent; color: #7CFFA6; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="border-color: rgba(245,197,24,.6); color: #F5C518">‹ PREV</button>
+            <button onClick="{{ wpZoomOut }}" title="zoom out" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; width: 30px; padding: 6px 0; background: transparent; color: #5E8CA4; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="color: #45E0E6; border-color: #45E0E6">−</button>
+            <button onClick="{{ wpZoomIn }}" title="zoom in" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; width: 30px; padding: 6px 0; background: transparent; color: #5E8CA4; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="color: #45E0E6; border-color: #45E0E6">+</button>
+            <button onClick="{{ wpPrev }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; padding: 7px 16px; background: transparent; color: #45E0E6; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="border-color: rgba(245,197,24,.6); color: #F5C518">‹ PREV</button>
             <span style="font-family: 'VT323', monospace; font-size: 18px; letter-spacing: .06em; color: #F5C518;">PAGE {{ wpPageLabel }}</span>
-            <button onClick="{{ wpNext }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; padding: 7px 16px; background: transparent; color: #7CFFA6; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="border-color: rgba(245,197,24,.6); color: #F5C518">NEXT ›</button>
+            <button onClick="{{ wpNext }}" data-sfx="tab" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; padding: 7px 16px; background: transparent; color: #45E0E6; border: 1px solid rgba(124,255,166,.35); cursor: pointer; clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);" style-hover="border-color: rgba(245,197,24,.6); color: #F5C518">NEXT ›</button>
           </div>
         </sc-if>
         <sc-if value="{{ wpNotReady }}" hint-placeholder-val="{{ false }}">
-          <div style="flex: 1; display: flex; align-items: center; justify-content: center; font-size: 11px; letter-spacing: .18em; color: #6E9C7C;">loading whitepaper...</div>
+          <div style="flex: 1; display: flex; align-items: center; justify-content: center; font-size: 11px; letter-spacing: .18em; color: #5E8CA4;">loading whitepaper...</div>
         </sc-if>
       </div>
     </sc-if>
@@ -139,7 +139,7 @@
 
     <div style="position: relative; width: 100%; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; background: linear-gradient(165deg, #0E0F10 0%, #08090A 40%, #040505 100%); border: 1px solid #232527; border-radius: 14px; padding: 9px; box-shadow: 0 40px 110px rgba(0,0,0,.95), 0 0 90px rgba(124,255,166,.05), inset 0 0 0 1px rgba(0,0,0,.8), 0 0 0 2px rgba(120,124,130,.28), 0 1px 0 2px rgba(60,62,66,.35);">
 
-      <div data-mq="crt" style="flex: 1 1 auto; min-height: 0; position: relative; border-radius: 12px; overflow: hidden; background: radial-gradient(ellipse at 50% 42%, #101A11 0%, #081109 62%, #020502 100%); color: #C9F5D6; display: flex; flex-direction: column; justify-content: center; padding: clamp(14px, 3vh, 40px) clamp(16px, 3vw, 44px); box-shadow: inset 0 0 0 1px rgba(0,0,0,.6), inset 0 0 70px rgba(0,0,0,.9), inset 0 0 160px rgba(124,255,166,.1); animation: bakaPower 1200ms 800ms cubic-bezier(.3,.9,.3,1) both; transform-origin: center;">
+      <div data-mq="crt" style="flex: 1 1 auto; min-height: 0; position: relative; border-radius: 12px; overflow: hidden; background: radial-gradient(ellipse at 50% 42%, #0A1526 0%, #080D16 62%, #04101E 100%); color: #7FE9F2; display: flex; flex-direction: column; justify-content: center; padding: clamp(14px, 3vh, 40px) clamp(16px, 3vw, 44px); box-shadow: inset 0 0 0 1px rgba(0,0,0,.6), inset 0 0 70px rgba(0,0,0,.9), inset 0 0 160px rgba(124,255,166,.1); animation: bakaPower 1200ms 800ms cubic-bezier(.3,.9,.3,1) both; transform-origin: center;">
         
 
         <div style="position: absolute; inset: 0; pointer-events: none; z-index: 5; background: linear-gradient(122deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,.015) 22%, rgba(255,255,255,0) 42%);"></div>
@@ -161,22 +161,22 @@
 
         <sc-if value="{{ select }}" hint-placeholder-val="{{ true }}">
           <div data-mq="selwrap" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(20px, 5vh, 52px); animation: bakaFade 600ms ease both;">
-            <div style="font-size: clamp(9.5px, 1.4vh, 12px); letter-spacing: .34em; color: #6E9C7C;">SELECT USER</div>
+            <div style="font-size: clamp(9.5px, 1.4vh, 12px); letter-spacing: .34em; color: #5E8CA4;">SELECT USER</div>
             <div data-mq="users" style="display: grid; grid-template-columns: repeat(4, 1fr); width: 60%;">
               <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.8vh, 16px); opacity: {{ u0.op }}; transform: {{ u0.tf }}; transition: opacity 400ms ease, transform 320ms ease;">
-                <img src="assets/doge.png" alt="doge" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: {{ u0.ring }}; filter: {{ u0.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
+                <img src="assets/doge.png" alt="doge" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A1526; box-shadow: {{ u0.ring }}; filter: {{ u0.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
                 <div style="font-size: clamp(9px, 1.3vh, 12px); letter-spacing: .14em; color: {{ u0.nameColor }}; transition: color 320ms ease;">doge</div>
               </div>
               <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.8vh, 16px); opacity: {{ u1.op }}; transform: {{ u1.tf }}; transition: opacity 400ms ease, transform 320ms ease;">
-                <img src="assets/floki.png" alt="floki" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: {{ u1.ring }}; filter: {{ u1.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
+                <img src="assets/floki.png" alt="floki" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A1526; box-shadow: {{ u1.ring }}; filter: {{ u1.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
                 <div style="font-size: clamp(9px, 1.3vh, 12px); letter-spacing: .14em; color: {{ u1.nameColor }}; transition: color 320ms ease;">floki</div>
               </div>
               <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.8vh, 16px); opacity: {{ u2.op }}; transform: {{ u2.tf }}; transition: opacity 400ms ease, transform 320ms ease;">
-                <img src="assets/babyfloki.png" alt="babyfloki" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: {{ u2.ring }}; filter: {{ u2.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
+                <img src="assets/babyfloki.png" alt="babyfloki" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A1526; box-shadow: {{ u2.ring }}; filter: {{ u2.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
                 <div style="font-size: clamp(9px, 1.3vh, 12px); letter-spacing: .14em; color: {{ u2.nameColor }}; transition: color 320ms ease;">babyfloki</div>
               </div>
               <div style="display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.8vh, 16px); opacity: {{ u3.op }}; transform: {{ u3.tf }}; transition: opacity 400ms ease, transform 320ms ease;">
-                <img src="assets/eric.png" alt="eric" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: {{ u3.ring }}; filter: {{ u3.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
+                <img src="assets/eric-logo-white.png" alt="eric" style="width: clamp(42px, 8.8vh, 86px); height: clamp(42px, 8.8vh, 86px); object-fit: cover; border-radius: 50%; background: #FFFFFF; box-shadow: {{ u3.ring }}; filter: {{ u3.fx }}; transition: box-shadow 320ms ease, filter 320ms ease;">
                 <div style="font-size: clamp(9px, 1.3vh, 12px); letter-spacing: .14em; color: {{ u3.nameColor }}; transition: color 320ms ease;">eric</div>
               </div>
             </div>
@@ -185,10 +185,10 @@
 
         <sc-if value="{{ login }}" hint-placeholder-val="{{ false }}">
           <div data-mq="selwrap" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(8px, 1.6vh, 16px); animation: bakaFade 420ms ease both;">
-            <div style="font-size: clamp(9.5px, 1.4vh, 12px); letter-spacing: .34em; color: #6E9C7C;">LOGGING IN</div>
-            <img src="assets/eric.png" alt="eric" style="width: clamp(96px, 20vh, 190px); height: clamp(96px, 20vh, 190px); object-fit: cover; border-radius: 50%; background: #0A140C; animation: bakaHalo 2.4s ease-in-out infinite; filter: {{ avatarFx }}; transform: {{ avatarTf }}; transition: filter 280ms ease, transform 280ms ease;">
+            <div style="font-size: clamp(9.5px, 1.4vh, 12px); letter-spacing: .34em; color: #5E8CA4;">LOGGING IN</div>
+            <img src="assets/eric-logo-white.png" alt="eric" style="width: clamp(96px, 20vh, 190px); height: clamp(96px, 20vh, 190px); object-fit: cover; border-radius: 50%; background: #FFFFFF; animation: bakaHalo 2.4s ease-in-out infinite; filter: {{ avatarFx }}; transform: {{ avatarTf }}; transition: filter 280ms ease, transform 280ms ease;">
             <div style="font-family: 'VT323', monospace; font-size: clamp(28px, 4.6vh, 50px); line-height: 1; letter-spacing: .06em; color: #F5C518; text-shadow: 0 0 22px rgba(245,197,24,.45);">eric</div>
-            <div style="font-size: clamp(10px, 1.5vh, 13px); letter-spacing: .06em; color: #7CFFA6;">{{ authLabel }}</div>
+            <div style="font-size: clamp(10px, 1.5vh, 13px); letter-spacing: .06em; color: #45E0E6;">{{ authLabel }}</div>
             <div style="display: flex; gap: 3px; margin-top: 2px;">
               <sc-for list="{{ authBlocks }}" as="b" hint-placeholder-count="16">
                 <span style="width: clamp(8px, 1.2vw, 13px); height: clamp(9px, 1.4vh, 14px); background: {{ b.bg }};"></span>
@@ -200,19 +200,19 @@
         <sc-if value="{{ booting }}" hint-placeholder-val="{{ false }}">
           <div data-mq="boot" style="position: relative; z-index: 2; width: 100%; max-width: 900px; margin: 0 auto; padding: clamp(18px, 4vh, 42px) 0; box-sizing: border-box;">
             <div style="display: flex; align-items: center; gap: 10px; padding-bottom: clamp(4px, 1vh, 14px); margin-bottom: clamp(8px, 2.6vh, 44px); animation: bakaFade 420ms ease both;">
-              <img src="assets/eric.png" alt="" style="width: clamp(17px, 2.5vh, 24px); height: clamp(17px, 2.5vh, 24px); object-fit: cover; border-radius: 50%; background: #0A140C; box-shadow: 0 0 0 1px #F5C518;">
+              <img src="assets/eric-logo-white.png" alt="" style="width: clamp(17px, 2.5vh, 24px); height: clamp(17px, 2.5vh, 24px); object-fit: cover; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px #F5C518;">
               <span style="font-size: clamp(9px, 1.2vh, 10.5px); font-weight: 600; letter-spacing: .06em; color: #F5C518; white-space: nowrap;">$ERIC</span>
               <span style="flex: 1;"></span>
             </div>
 
             <img data-mq="bootimg" src="assets/eric-photo.png" alt="ERIC" style="object-position: 50% 30%; position: absolute; top: clamp(28px, 6vh, 58px); right: clamp(14px, 2vw, 30px); width: clamp(150px, 30vh, 250px); height: clamp(150px, 30vh, 250px); object-fit: cover; z-index: 3; opacity: 1; clip-path: polygon(14px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 7px 100%, 0 calc(100% - 7px), 0 14px); box-shadow: 0 0 0 1px rgba(245,197,24,.5), 0 0 44px rgba(245,197,24,.22); animation: bakaFade 700ms 200ms ease both;">
             <sc-for list="{{ lines }}" as="l" hint-placeholder-count="12">
-              <div style="font-family: {{ l.family }}; font-size: {{ l.size }}; font-weight: {{ l.weight }}; line-height: {{ l.lh }}; letter-spacing: {{ l.ls }}; text-align: {{ l.align }}; padding: {{ l.pad }}; margin: {{ l.margin }}; clip-path: {{ l.clip }}; border: {{ l.border }}; background: {{ l.bg }}; color: {{ l.color }}; text-shadow: {{ l.glow }}; text-wrap: pretty; white-space: {{ l.wrap }};">{{ l.text }}<sc-if value="{{ l.link }}" hint-placeholder-val="{{ false }}"><a href="assets/whitepaper.pdf" target="_blank" onClick="{{ openWp }}" style="color: #F5C518; text-decoration: underline; text-underline-offset: 3px; margin-left: 8px; text-shadow: 0 0 14px rgba(245,197,24,.4);" style-hover="color: #FFD84D">(link)</a></sc-if><sc-if value="{{ l.tweet }}" hint-placeholder-val="{{ false }}"><a href="https://x.com/elonmusk/status/1134609650114949120" target="_blank" style="color: #8FFFB4; text-decoration: underline; text-underline-offset: 3px; text-shadow: 0 0 14px rgba(124,255,166,.38);" style-hover="color: #F5C518">elon's pet bee</a>.</sc-if><sc-if value="{{ l.caret }}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; width: .56em; height: 1em; vertical-align: -.14em; background: #7CFFA6; box-shadow: 0 0 10px rgba(124,255,166,.7); margin-left: .12em; animation: bakaCaret 1.05s steps(1) infinite;"></span></sc-if></div>
+              <div style="font-family: {{ l.family }}; font-size: {{ l.size }}; font-weight: {{ l.weight }}; line-height: {{ l.lh }}; letter-spacing: {{ l.ls }}; text-align: {{ l.align }}; padding: {{ l.pad }}; margin: {{ l.margin }}; clip-path: {{ l.clip }}; border: {{ l.border }}; background: {{ l.bg }}; color: {{ l.color }}; text-shadow: {{ l.glow }}; text-wrap: pretty; white-space: {{ l.wrap }};">{{ l.text }}<sc-if value="{{ l.link }}" hint-placeholder-val="{{ false }}"><a href="assets/whitepaper.pdf" target="_blank" onClick="{{ openWp }}" style="color: #F5C518; text-decoration: underline; text-underline-offset: 3px; margin-left: 8px; text-shadow: 0 0 14px rgba(245,197,24,.4);" style-hover="color: #FFD84D">(link)</a></sc-if><sc-if value="{{ l.tweet }}" hint-placeholder-val="{{ false }}"><a href="https://x.com/elonmusk/status/1134609650114949120" target="_blank" style="color: #7FE9F2; text-decoration: underline; text-underline-offset: 3px; text-shadow: 0 0 14px rgba(124,255,166,.38);" style-hover="color: #F5C518">elon's pet bee</a>.</sc-if><sc-if value="{{ l.caret }}" hint-placeholder-val="{{ false }}"><span style="display: inline-block; width: .56em; height: 1em; vertical-align: -.14em; background: #45E0E6; box-shadow: 0 0 10px rgba(124,255,166,.7); margin-left: .12em; animation: bakaCaret 1.05s steps(1) infinite;"></span></sc-if></div>
             </sc-for>
 
             <sc-if value="{{ ready }}" hint-placeholder-val="{{ false }}">
               <div data-mq="ready" style="margin-top: clamp(26px, 5.5vh, 64px); text-align: right; animation: bakaRise 420ms ease both;">
-                <a href="Dashboard.dc.html" style="display: inline-block; font-family: 'VT323', monospace; font-size: clamp(17px, 2.4vh, 23px); letter-spacing: .08em; padding: clamp(8px, 1.6vh, 14px) clamp(20px, 2.2vw, 32px) clamp(7px, 1.4vh, 12px); background: #F5C518; color: #0A0E0A; border: none; text-decoration: none; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); animation: bakaBtnGlow2 2.2s ease-in-out infinite; transition: background 140ms linear, color 140ms linear;" style-hover="background: #FFD84D">ENTER THE TERMINAL &gt;</a>
+                <a href="Dashboard.dc.html" style="display: inline-block; font-family: 'VT323', monospace; font-size: clamp(17px, 2.4vh, 23px); letter-spacing: .08em; padding: clamp(8px, 1.6vh, 14px) clamp(20px, 2.2vw, 32px) clamp(7px, 1.4vh, 12px); background: #F5C518; color: #04101E; border: none; text-decoration: none; clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); animation: bakaBtnGlow2 2.2s ease-in-out infinite; transition: background 140ms linear, color 140ms linear;" style-hover="background: #FFD84D">ENTER THE TERMINAL &gt;</a>
               </div>
             </sc-if>
           </div>
@@ -252,7 +252,7 @@ const USERS = [
   { img: "assets/doge.png", name: "doge" },
   { img: "assets/floki.png", name: "floki" },
   { img: "assets/babyfloki.png", name: "babyfloki" },
-  { img: "assets/eric.png", name: "eric" }
+  { img: "assets/eric-logo-white.png", name: "eric" }
 ];
 
 const S = (n) => { if (window.BakaAudio) window.BakaAudio.sfx(n); };
@@ -458,8 +458,8 @@ class Component extends DCLogic {
     const style = (k) => k === "head"
       ? { family: "'IBM Plex Mono', monospace", size: "clamp(11px, 1.6vh, 14px)", weight: "600", lh: "1.9", ls: ".16em", align: "left", pad: "0", margin: "0", border: "none", bg: "transparent", color: "#F5C518", glow: "0 0 14px rgba(245,197,24,.4)", wrap: "normal", clip: "none" }
       : k === "eq"
-        ? { family: "'VT323', monospace", size: "clamp(13px, 1.55vw, 21px)", weight: "400", lh: "1.25", ls: ".03em", align: "center", pad: "clamp(6px, 1.6vh, 18px) clamp(10px, 1.6vw, 24px)", margin: "clamp(4px, 1vh, 12px) 0", border: s.flash ? "1px solid #F5C518" : "1px solid rgba(245,197,24,.4)", bg: s.flash ? "#F5C518" : "rgba(245,197,24,.05)", color: s.flash ? "#0A0E0A" : "#F5C518", glow: s.flash ? "none" : "0 0 26px rgba(245,197,24,.55)", wrap: this.narrow ? "normal" : "nowrap", clip: "polygon(14px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 7px 100%, 0 calc(100% - 7px), 0 14px)" }
-        : { family: "'IBM Plex Mono', monospace", size: "clamp(11px, 1.75vh, 14px)", weight: "400", lh: "clamp(16px, 3vh, 28px)", ls: "0", align: "left", pad: "0 clamp(150px, 26vh, 235px) 0 0", margin: "0", border: "none", bg: "transparent", color: "#8FFFB4", glow: "0 0 14px rgba(124,255,166,.38)", wrap: "nowrap", clip: "none" };
+        ? { family: "'VT323', monospace", size: "clamp(13px, 1.55vw, 21px)", weight: "400", lh: "1.25", ls: ".03em", align: "center", pad: "clamp(6px, 1.6vh, 18px) clamp(10px, 1.6vw, 24px)", margin: "clamp(4px, 1vh, 12px) 0", border: s.flash ? "1px solid #F5C518" : "1px solid rgba(245,197,24,.4)", bg: s.flash ? "#F5C518" : "rgba(245,197,24,.05)", color: s.flash ? "#04101E" : "#F5C518", glow: s.flash ? "none" : "0 0 26px rgba(245,197,24,.55)", wrap: this.narrow ? "normal" : "nowrap", clip: "polygon(14px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 7px 100%, 0 calc(100% - 7px), 0 14px)" }
+        : { family: "'IBM Plex Mono', monospace", size: "clamp(11px, 1.75vh, 14px)", weight: "400", lh: "clamp(16px, 3vh, 28px)", ls: "0", align: "left", pad: "0 clamp(150px, 26vh, 235px) 0 0", margin: "0", border: "none", bg: "transparent", color: "#7FE9F2", glow: "0 0 14px rgba(124,255,166,.38)", wrap: "nowrap", clip: "none" };
 
     const lines = [];
     for (let i = 0; i < LINES.length; i++) {
@@ -469,7 +469,7 @@ class Component extends DCLogic {
       else break;
     }
 
-    const authBlocks = Array.from({ length: BLOCKS }, (_, i) => ({ bg: i < s.auth ? "#F5C518" : "#15201A" }));
+    const authBlocks = Array.from({ length: BLOCKS }, (_, i) => ({ bg: i < s.auth ? "#F5C518" : "#0A1526" }));
 
     return {
       lines, authBlocks,
@@ -488,7 +488,7 @@ class Component extends DCLogic {
           tf: win ? "scale(1.16) translateY(-4px)" : hot ? "scale(1.05)" : "scale(1)",
           ring: win ? "0 0 0 2px #F5C518, 0 0 34px rgba(245,197,24,.6)" : hot ? "0 0 0 1px rgba(124,255,166,.6), 0 0 18px rgba(124,255,166,.25)" : "0 0 0 1px rgba(124,255,166,.22)",
           fx: win ? "brightness(1.05)" : hot ? "grayscale(.15) brightness(.95)" : "grayscale(.55) brightness(.72)",
-          nameColor: win ? "#F5C518" : hot ? "#9FE8B4" : "#6E9C7C"
+          nameColor: win ? "#F5C518" : hot ? "#7FE9F2" : "#5E8CA4"
         }];
       })),
       cx: s.cx, cy: s.cy, cdur: s.cdur, ctf: s.ctf,
