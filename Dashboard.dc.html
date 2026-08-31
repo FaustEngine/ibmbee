@@ -937,27 +937,27 @@
         <span style="position: absolute; right: 3px; top: 3px; width: 6px; height: 6px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #5A5E66, #23262B);"></span>
         <span style="position: absolute; left: 3px; bottom: 3px; width: 6px; height: 6px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #5A5E66, #23262B);"></span>
         <span style="position: absolute; right: 3px; bottom: 3px; width: 6px; height: 6px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #5A5E66, #23262B);"></span>
-        <div style="position: relative; width: 100%; height: 100%; background: radial-gradient(ellipse 120% 90% at 50% 30%, #FFFEF8 0%, #FBF5E4 48%, #F3E9CF 82%, #EEE2C2 100%); overflow: hidden;">
-          <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 45% at 50% 38%, rgba(255,214,120,.22) 0%, rgba(255,214,120,0) 70%);"></div>
-          <div style="position: absolute; inset: 0; pointer-events: none; opacity: .07; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2228%22 height=%2249%22><path d=%22M14 1L27 8.5v16L14 32 1 24.5v-16z M14 32v17%22 fill=%22none%22 stroke=%22%23806A30%22 stroke-width=%221%22/></svg>'); background-size: 28px 49px;"></div>
+        <div style="position: relative; width: 100%; height: 100%; background: #04101E url('assets/chamber-bg.png') center / cover no-repeat; overflow: hidden;">
+          <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 40% at 72% 20%, rgba(69,224,230,.20) 0%, rgba(4,16,30,0) 68%);"></div>
+          <div style="position: absolute; inset: 0; pointer-events: none; opacity: .05; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2228%22 height=%2249%22><path d=%22M14 1L27 8.5v16L14 32 1 24.5v-16z M14 32v17%22 fill=%22none%22 stroke=%22%2345E0E6%22 stroke-width=%221%22/></svg>'); background-size: 28px 49px;"></div>
           <canvas ref="{{ chamCanvasRef }}" style="position: absolute; inset: 0; width: 100%; height: 100%;"></canvas>
-          <div ref="{{ chamShadowRef }}" style="position: absolute; left: 0; top: 0; width: 44px; height: 10px; border-radius: 50%; background: rgba(60,52,30,.28); filter: blur(3px); will-change: transform, opacity; transform: translate(-200px, 0); pointer-events: none;"></div>
-          <img ref="{{ chamBeeRef }}" src="assets/eric.png" alt="eric" style="position: absolute; left: 0; top: 0; width: 62px; height: 62px; will-change: transform; transform: translate(-120px, 200px); pointer-events: none; filter: drop-shadow(0 3px 6px rgba(80,60,10,.18));">
-          <div data-mq="chamtitle" style="position: absolute; top: 12px; left: 0; right: 0; text-align: center; font-size: 10px; letter-spacing: .32em; color: #6B6B64; pointer-events: none;"><span>THE MACHINE DECIDES.</span> <span>ERIC COMPLIES.</span></div>
-          <div onClick="{{ chamToggleRest }}" title="live feed" data-noglitch="1" style="position: absolute; top: 12px; left: 14px; display: inline-flex; align-items: center; gap: 7px; font-size: 10px; letter-spacing: .22em; color: #3E3E3A; cursor: pointer; user-select: none;">
-            <span style="width: 7px; height: 7px; border-radius: 50%; background: #3AA655; animation: bkLed 2.6s ease-in-out infinite;"></span>LIVE
+          <div ref="{{ chamShadowRef }}" style="position: absolute; left: 0; top: 0; width: 44px; height: 10px; border-radius: 50%; background: rgba(4,16,30,.45); filter: blur(3px); will-change: transform, opacity; transform: translate(-200px, 0); pointer-events: none;"></div>
+          <img ref="{{ chamBeeRef }}" src="assets/eric.png" alt="eric" style="position: absolute; left: 0; top: 0; width: 62px; height: 62px; will-change: transform; transform: translate(-120px, 200px); pointer-events: none; filter: drop-shadow(0 3px 8px rgba(4,16,30,.55));">
+          <div data-mq="chamtitle" style="position: absolute; top: 12px; left: 0; right: 0; text-align: center; font-size: 10px; letter-spacing: .32em; color: #C9F4F7; pointer-events: none; text-shadow: 0 1px 8px rgba(4,16,30,.65);"><span>THE MACHINE DECIDES.</span> <span>ERIC COMPLIES.</span></div>
+          <div onClick="{{ chamToggleRest }}" title="live feed" data-noglitch="1" style="position: absolute; top: 12px; left: 14px; display: inline-flex; align-items: center; gap: 7px; font-size: 10px; letter-spacing: .22em; color: #7FE9F2; cursor: pointer; user-select: none;">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: #45E0E6; animation: bkLed 2.6s ease-in-out infinite;"></span>LIVE
           </div>
 
-          <div data-mq="chamcoords" style="position: absolute; left: 16px; bottom: 14px; display: flex; align-items: center; gap: 16px; font-size: 9.5px; letter-spacing: .12em; color: #3E3E3A;">
+          <div data-mq="chamcoords" style="position: absolute; left: 16px; bottom: 14px; display: flex; align-items: center; gap: 16px; font-size: 9.5px; letter-spacing: .12em; color: #C9F4F7; text-shadow: 0 1px 6px rgba(4,16,30,.7);">
             <span>x <span ref="{{ chamCXRef }}">0000</span></span>
             <span>y <span ref="{{ chamCYRef }}">0000</span></span>
-            <div ref="{{ chamCellsRef }}" data-noglitch="1" aria-label="8-bit measurement" style="display:inline-flex;align-items:center;gap:3px;"><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #3E3E3A;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #3E3E3A;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #3E3E3A;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #3E3E3A;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #3E3E3A;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #3E3E3A;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #3E3E3A;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #3E3E3A;background:transparent;"></i></div>
+            <div ref="{{ chamCellsRef }}" data-noglitch="1" aria-label="8-bit measurement" style="display:inline-flex;align-items:center;gap:3px;"><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #7FE9F2;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #7FE9F2;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #7FE9F2;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #7FE9F2;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #7FE9F2;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #7FE9F2;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #7FE9F2;background:transparent;"></i><i style="display:block;width:9px;height:9px;box-sizing:border-box;border:1px solid #7FE9F2;background:transparent;"></i></div>
           </div>
           <div style="position: absolute; right: 16px; bottom: 14px; display: flex; flex-direction: column; align-items: flex-end; gap: 7px;">
             <a href="https://quantum.cloud.ibm.com/workloads/da9pcgke74ec73ak1gh0" target="_blank" style="font-size: 9.5px; letter-spacing: .18em; color: #1F62FF; text-decoration: underline; text-underline-offset: 3px;">VERIFY THIS FLIGHT</a>
-            <div data-mq="chamflight" style="display: inline-flex; align-items: center; gap: 8px; font-size: 9.5px; letter-spacing: .14em; color: #3E3E3A;">
+            <div data-mq="chamflight" style="display: inline-flex; align-items: center; gap: 8px; font-size: 9.5px; letter-spacing: .14em; color: #C9F4F7; text-shadow: 0 1px 6px rgba(4,16,30,.7);">
               <span>FLIGHT #001 · ibm_fez</span>
-              <a href="https://quantum.cloud.ibm.com/workloads/da9pcgke74ec73ak1gh0" target="_blank" style="font-size: 9px; letter-spacing: .08em; color: #3E3E3A; text-decoration: none; border: 1px solid #D8D4C8; background: #F6F3EA; padding: 3px 8px;" style-hover="border-color: #1F62FF; color: #1F62FF">JOB da9pcgke74ec73ak1gh0</a>
+              <a href="https://quantum.cloud.ibm.com/workloads/da9pcgke74ec73ak1gh0" target="_blank" style="font-size: 9px; letter-spacing: .08em; color: #7FE9F2; text-decoration: none; border: 1px solid #45E0E6; background: rgba(4,16,30,.55); padding: 3px 8px;" style-hover="border-color: #F5C518; color: #F5C518">JOB da9pcgke74ec73ak1gh0</a>
             </div>
           </div>
           <sc-if value="{{ chamBootOn }}" hint-placeholder-val="{{ false }}">
@@ -1926,7 +1926,7 @@ class Component extends DCLogic {
   chamNewByte() {
     const bits = (this._chamP && this._chamP.bits) || FALLBACK_BITS[0];
     const cells = this.chamCells ? this.chamCells.children : [];
-    for (let i = 0; i < cells.length; i++) cells[i].style.background = (bits.charAt(i) === "1") ? "#2E2C27" : "transparent";
+    for (let i = 0; i < cells.length; i++) cells[i].style.background = (bits.charAt(i) === "1") ? "#04101E" : "transparent";
   }
   chamLoop() {
     const step = (now) => {
@@ -1973,7 +1973,7 @@ class Component extends DCLogic {
         const alpha = Math.max(0, 1 - age / ERIC_TRAIL_MS);
         if (alpha <= 0) continue;
         const a = P.trail[i - 1], bpt = P.trail[i];
-        ctx.strokeStyle = "rgba(146,112,42," + (alpha * 0.20).toFixed(3) + ")";
+        ctx.strokeStyle = "rgba(69,224,230," + (alpha * 0.45).toFixed(3) + ")";
         ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
@@ -1996,7 +1996,7 @@ class Component extends DCLogic {
       if (bits && bits !== P.lastBits) {
         P.lastBits = bits;
         const cells = this.chamCells ? this.chamCells.children : [];
-        for (let i = 0; i < cells.length; i++) cells[i].style.background = (bits.charAt(i) === "1") ? "#2E2C27" : "transparent";
+        for (let i = 0; i < cells.length; i++) cells[i].style.background = (bits.charAt(i) === "1") ? "#04101E" : "transparent";
       }
     };
     step();
