@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$ERIC · flight proof</title>
+  <meta name="description" content="Public IBM Quantum flight proof for Quantum Bee ($ERIC). Job IDs are cross-checkable in any IBM Quantum account." />
+  <style>
+    :root {
+      --navy: #04101e;
+      --cyan: #45E0E6;
+      --cyan2: #7FE9F2;
+      --gold: #F5C518;
+      --muted: #5E8CA4;
+      --text: #C9F4F7;
+      --line: rgba(69, 224, 230, 0.28);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: radial-gradient(1200px 600px at 50% -10%, #0a2a44 0%, var(--navy) 55%);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      min-height: 100%;
+    }
+    a { color: var(--cyan2); }
+    a:hover { color: var(--gold); }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 28px 18px 64px; }
+    header {
+      border: 1px solid var(--line);
+      background: rgba(7, 24, 40, 0.72);
+      padding: 22px 20px;
+      margin-bottom: 22px;
+    }
+    .kicker { font-size: 10px; letter-spacing: .32em; color: var(--gold); margin-bottom: 10px; }
+    h1 { margin: 0 0 10px; font-size: 22px; letter-spacing: .08em; font-weight: 600; color: #fff; }
+    .note { color: var(--cyan2); font-size: 13px; line-height: 1.55; margin: 0 0 12px; }
+    .meta { color: var(--muted); font-size: 12px; line-height: 1.5; }
+    nav { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px; font-size: 12px; letter-spacing: .08em; }
+    .status {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .flight {
+      border: 1px solid var(--line);
+      background: rgba(4, 16, 30, 0.55);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .flight summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      display: grid;
+      gap: 6px;
+    }
+    .flight summary::-webkit-details-marker { display: none; }
+    .flight summary:hover { background: rgba(69, 224, 230, 0.05); }
+    .row1 { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: baseline; font-size: 13px; }
+    .date { color: var(--gold); letter-spacing: .08em; }
+    .backend { color: var(--cyan); }
+    .job {
+      color: var(--cyan2);
+      border: 1px solid var(--cyan);
+      padding: 2px 8px;
+      font-size: 11px;
+      letter-spacing: .04em;
+      background: rgba(4,16,30,.55);
+      user-select: all;
+    }
+    .row2 { font-size: 11px; color: var(--muted); letter-spacing: .06em; }
+    .body { border-top: 1px solid var(--line); padding: 12px 16px 16px; font-size: 12px; }
+    .warn { color: #ffb86b; margin-bottom: 10px; }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text);
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(69,224,230,.12);
+      padding: 10px 12px;
+      max-height: 320px;
+      overflow: auto;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .06em;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">QUANTUM BEE · PUBLIC RECORD</div>
+      <h1>$ERIC · flight proof</h1>
+      <p class="note">job IDs are cross-checkable in any IBM Quantum account.</p>
+      <p class="meta">Every daily flight is an IBM Quantum Sampler job. Counts below are the raw measurement frequencies that steered Eric. No login required to read this page.</p>
+      <nav>
+        <a href="./Dashboard.dc.html">← Dashboard</a>
+        <a href="./">Home</a>
+        <a href="./flights.json">flights.json</a>
+        <a href="https://quantum.cloud.ibm.com/" target="_blank" rel="noopener">IBM Quantum</a>
+      </nav>
+    </header>
+
+    <div class="status" id="status">loading flights.json…</div>
+    <div id="list"></div>
+
+    <footer>
+      Append-only permanent record. VERIFY links on the chamber point here — not at private IBM workload URLs.<br />
+      Cross-check any <span style="color:var(--cyan2)">job_id</span> from an IBM Quantum account / Runtime client.
+    </footer>
+  </div>
+  <script>
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+    function dateLabel(iso) {
+      if (!iso) return "—";
+      return String(iso).slice(0, 10);
+    }
+    function renderCounts(counts) {
+      if (!counts) return null;
+      const entries = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+      return entries.map(([bit, n]) => bit + "  ×" + n).join("\n");
+    }
+    async function main() {
+      const status = document.getElementById("status");
+      const list = document.getElementById("list");
+      try {
+        const res = await fetch("./flights.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        const flights = Array.isArray(data.flights) ? data.flights : [];
+        const withCounts = flights.filter(f => f && f.counts).length;
+        status.textContent =
+          flights.length + " flights · " + withCounts + " with measurement counts · updated " +
+          (data.updated_at || "—") +
+          " · " + (data.note || "job IDs are cross-checkable in any IBM Quantum account");
+        list.innerHTML = flights.map((f, i) => {
+          const countsTxt = renderCounts(f.counts);
+          const body = countsTxt
+            ? "<pre>" + esc(countsTxt) + "</pre>"
+            : "<div class=\"warn\">" + esc(f.note || "counts unavailable — metadata only; verify via job ID") + "</div>";
+          const open = i === 0 ? " open" : "";
+          return (
+            "<details class=\"flight\"" + open + ">" +
+              "<summary>" +
+                "<div class=\"row1\">" +
+                  "<span class=\"date\">" + esc(dateLabel(f.stamped_at)) + "</span>" +
+                  "<span class=\"backend\">" + esc(f.backend || "?") + "</span>" +
+                  "<span class=\"job\">" + esc(f.job_id || "") + "</span>" +
+                "</div>" +
+                "<div class=\"row2\">shots " + esc(f.shots) +
+                  " · qubits " + esc(f.n_qubits) +
+                  " · usage " + esc(f.usage_seconds) + "s" +
+                  (f.counts ? " · " + Object.keys(f.counts).length + " unique outcomes" : " · metadata only") +
+                "</div>" +
+              "</summary>" +
+              "<div class=\"body\">" + body + "</div>" +
+            "</details>"
+          );
+        }).join("");
+      } catch (err) {
+        status.textContent = "failed to load flights.json: " + err;
+      }
+    }
+    main();
+  </script>
+</body>
+</html>
