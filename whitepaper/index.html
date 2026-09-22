@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$ERIC · whitepaper — ERIC: proof of flight</title>
+  <meta name="description" content="ERIC: proof of flight — the Quantum Bee ($ERIC) whitepaper." />
+  <link rel="canonical" href="https://ibmbee.com/whitepaper/" />
+  <style>
+    :root {
+      --navy: #04101e;
+      --cyan: #45E0E6;
+      --cyan2: #7FE9F2;
+      --gold: #F5C518;
+      --muted: #5E8CA4;
+      --text: #C9F4F7;
+      --line: rgba(69, 224, 230, 0.28);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: radial-gradient(1200px 600px at 50% -10%, #0a2a44 0%, var(--navy) 55%);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    }
+    a { color: var(--cyan2); text-decoration: none; }
+    a:hover { color: var(--gold); }
+    .bar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 24, 40, 0.85);
+    }
+    .kicker { font-size: 10px; letter-spacing: .28em; color: var(--gold); }
+    h1 { margin: 4px 0 0; font-size: 18px; letter-spacing: .06em; font-weight: 600; color: #fff; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 12px; letter-spacing: .06em; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid var(--cyan);
+      color: var(--cyan2);
+      padding: 7px 12px;
+      background: rgba(4,16,30,.55);
+    }
+    .btn:hover { border-color: var(--gold); color: var(--gold); }
+    .btn.gold {
+      border-color: rgba(245,197,24,.7);
+      color: var(--navy);
+      background: var(--gold);
+      font-weight: 700;
+    }
+    .btn.gold:hover { background: #FFD84D; color: var(--navy); }
+    .url {
+      font-size: 11px; color: var(--muted); letter-spacing: .04em;
+      user-select: all; word-break: break-all;
+    }
+    .frame-wrap {
+      height: calc(100% - 78px);
+      padding: 0;
+    }
+    iframe, embed, object {
+      width: 100%; height: 100%; border: 0; display: block;
+      background: #0a1524;
+    }
+    .fallback {
+      padding: 28px 18px; max-width: 720px; margin: 0 auto;
+      font-size: 13px; line-height: 1.6; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <div>
+      <div class="kicker">WHITEPAPER</div>
+      <h1>ERIC: proof of flight</h1>
+      <div class="url">https://ibmbee.com/whitepaper/</div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="../">← home</a>
+      <a class="btn" href="../proof.html">flight proof</a>
+      <a class="btn gold" href="../assets/whitepaper.pdf" download="ERIC-whitepaper.pdf">download PDF</a>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe title="ERIC whitepaper PDF" src="../assets/whitepaper.pdf#view=FitH"></iframe>
+  </div>
+  <noscript>
+    <div class="fallback">
+      Open the PDF directly: <a href="../assets/whitepaper.pdf">assets/whitepaper.pdf</a>
+    </div>
+  </noscript>
+</body>
+</html>
